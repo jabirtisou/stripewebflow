@@ -100,7 +100,7 @@ const createPaymentIntent = async (amount: number) => {
                 currency: 'eur'
             })
         });
-        const data: { paymentIntent_id:string; clientSecret: string } = await response.json();
+        const data: { paymentIntent_id: string; clientSecret: string } = await response.json();
 
         return data;
     }catch(err) {
