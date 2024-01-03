@@ -19,11 +19,27 @@
     const idealStripeElement = document.querySelector('[data-element="ideal_stripe"]');
     if (!idealStripeElement)
       return;
+
     const appearance = { theme: 'stripe' };
     const elements = stripe.elements({ appearance });
-    const idealBank = elements.create("idealBank", {});
+    const stripeStyle = {
+        base: {
+            color: '#32325d',
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+                color: '#aab7c4'
+            }
+        },
+        invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a'
+        }
+    };
+    const idealBank = elements.create('idealBank', { style: stripeStyle });
     idealBank.mount(idealStripeElement);
-    const card = elements.create("card");
+    const card = elements.create('card', { style: stripeStyle });
     card.mount(ccStripeElement);
     var tabs = document.querySelectorAll(".w-tab-link");
     tabs.forEach(function(tab) {
