@@ -19,7 +19,8 @@
     const idealStripeElement = document.querySelector('[data-element="ideal_stripe"]');
     if (!idealStripeElement)
       return;
-    const elements = stripe.elements();
+    const appearance = { theme: 'stripe' };
+    const elements = stripe.elements({ appearance });
     const idealBank = elements.create("idealBank", {});
     idealBank.mount(idealStripeElement);
     const card = elements.create("card");
