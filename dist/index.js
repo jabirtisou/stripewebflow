@@ -20,26 +20,26 @@
     if (!idealStripeElement)
       return;
 
-    const appearance = { theme: 'stripe' };
-    const elements = stripe.elements({ appearance });
-    const stripeStyle = {
-        base: {
-            color: '#32325d',
-            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-            fontSmoothing: 'antialiased',
-            fontSize: '16px',
-            '::placeholder': {
-                color: '#aab7c4'
-            }
-        },
-        invalid: {
-            color: '#fa755a',
-            iconColor: '#fa755a'
-        }
+    const appearance = {
+      theme: 'stripe',
+    
+      variables: {
+        colorPrimary: '#0570de',
+        colorBackground: '#ffffff',
+        colorText: '#30313d',
+        colorDanger: '#df1b41',
+        fontFamily: 'Ideal Sans, system-ui, sans-serif',
+        spacingUnit: '2px',
+        borderRadius: '4px',
+      }
     };
-    const idealBank = elements.create('idealBank', { style: stripeStyle });
+    
+    // Pass the appearance object to the Elements instance
+    const elements = stripe.elements({clientSecret, appearance});
+
+    const idealBank = elements.create('idealBank');
     idealBank.mount(idealStripeElement);
-    const card = elements.create('card', { style: stripeStyle });
+    const card = elements.create('card');
     card.mount(ccStripeElement);
     var tabs = document.querySelectorAll(".w-tab-link");
     tabs.forEach(function(tab) {
